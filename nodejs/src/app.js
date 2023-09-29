@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
         nome: "João",
         telefone: "47 99999-9999"
     });
-
+    
 });
 
 app.listen(port, () => {
