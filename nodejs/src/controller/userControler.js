@@ -98,6 +98,27 @@ async function UpdateUser(req, res) {
         });
     }
 
+}
+
+async function DeleteUser(req, res) {
+    const { id } = req.params;
+
+    try {
+    
+        const connection = await mysql.createConnection(databaseConfig);
+
+        await connection.query("DELETE FROM user WHERE id = ?", [id]);
+
+        await connection.end();
+
+        res.status(200).json("User Deleted!");
+
+    } catch(error) {
+        res.status(500).send({
+            message: "Error delete user!",
+            body: error.message
+        });
+    }
 
 
 }
@@ -106,5 +127,6 @@ module.exports = {
     CreateUser,
     GetAllUsers,
     GetUserById,
-    UpdateUser
+    UpdateUser,
+    DeleteUser
 }
